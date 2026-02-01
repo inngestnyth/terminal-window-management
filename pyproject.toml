@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "TWM Contributors"}
+    {name = "inngestnyth"}
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",

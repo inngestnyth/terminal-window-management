@@ -4,7 +4,7 @@ setup(
     name='twm',
     version='0.1.0',
     description='Terminal Window Management tool for macOS Terminal.app',
-    author='TWM Contributors',
+    author='inngestnyth',
     packages=find_packages(),
     install_requires=[
         'click>=8.0.0',
