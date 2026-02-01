@@ -35,12 +35,13 @@ def get_windows() -> List[TerminalWindow]:
     script = """
     tell application "System Events"
         tell process "Terminal"
-            set windowList to {}
+            set windowList to ""
             repeat with w from 1 to count of windows
                 try
-                    set windowBounds to position of window w & size of window w
+                    set windowPos to position of window w
+                    set windowSize to size of window w
                     set windowTitle to name of window w
-                    set end of windowList to {w, item 1 of windowBounds, item 2 of windowBounds, item 1 of (size of window w), item 2 of (size of window w), windowTitle}
+                    set windowList to windowList & w & "|" & (item 1 of windowPos) & "|" & (item 2 of windowPos) & "|" & (item 1 of windowSize) & "|" & (item 2 of windowSize) & "|" & windowTitle & "|||"
                 end try
             end repeat
             return windowList
@@ -52,25 +53,29 @@ def get_windows() -> List[TerminalWindow]:
     if not result:
         return []
 
-    # Parse the result
+    # Parse the result - windows separated by |||, fields by |
     windows = []
-    # Result format: "1, 0, 23, 1920, 1057, Terminal, 2, 960, 23, 960, 1057, Terminal"
-    parts = result.split(', ')
+    window_strings = result.split('|||')
 
-    i = 0
-    while i < len(parts):
+    for window_str in window_strings:
+        if not window_str.strip():
+            continue
+
         try:
-            window_id = int(parts[i])
-            x = int(parts[i + 1])
-            y = int(parts[i + 2])
-            width = int(parts[i + 3])
-            height = int(parts[i + 4])
-            title = parts[i + 5] if i + 5 < len(parts) else ""
+            parts = window_str.split('|')
+            if len(parts) < 5:
+                continue
+
+            window_id = int(parts[0])
+            x = int(float(parts[1]))
+            y = int(float(parts[2]))
+            width = int(float(parts[3]))
+            height = int(float(parts[4]))
+            title = parts[5] if len(parts) > 5 else ""
 
             windows.append(TerminalWindow(window_id, (x, y, width, height), title))
-            i += 6
         except (ValueError, IndexError):
-            break
+            continue
 
     return windows
 
