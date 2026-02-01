@@ -1,0 +1,46 @@
+name: "monitoring"
+description: "System monitoring dashboard (4-window grid)"
+windows:
+  - position:
+      x: 0
+      y: 23
+      width: 960
+      height: 540
+    title: "top"
+    command: "top"
+    background_color: "#1a1a1a"
+    text_color: "#00ff00"
+    tab_color: "green"
+
+  - position:
+      x: 960
+      y: 23
+      width: 960
+      height: 540
+    title: "logs"
+    command: "tail -f /var/log/system.log"
+    background_color: "#1a1a1a"
+    text_color: "#ffff00"
+    tab_color: "yellow"
+
+  - position:
+      x: 0
+      y: 563
+      width: 960
+      height: 540
+    title: "network"
+    command: "netstat -w 1"
+    background_color: "#1a1a1a"
+    text_color: "#ff00ff"
+    tab_color: "purple"
+
+  - position:
+      x: 960
+      y: 563
+      width: 960
+      height: 540
+    title: "disk"
+    command: "watch -n 1 df -h"
+    background_color: "#1a1a1a"
+    text_color: "#00ffff"
+    tab_color: "cyan"

@@ -1,0 +1,20 @@
+name: "code-review"
+description: "Side-by-side code review setup"
+windows:
+  - position:
+      x: 0
+      y: 23
+      width: 960
+      height: 1080
+    title: "main"
+    theme: "Pro"
+    tab_color: "blue"
+
+  - position:
+      x: 960
+      y: 23
+      width: 960
+      height: 1080
+    title: "branch"
+    theme: "Ocean"
+    tab_color: "green"

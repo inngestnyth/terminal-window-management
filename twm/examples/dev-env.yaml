@@ -1,0 +1,32 @@
+name: "development"
+description: "3-window development environment"
+windows:
+  - position:
+      x: 0
+      y: 23
+      width: 960
+      height: 1080
+    title: "editor"
+    working_dir: "~/projects"
+    theme: "Pro"
+    tab_color: "blue"
+
+  - position:
+      x: 960
+      y: 23
+      width: 960
+      height: 540
+    title: "server"
+    working_dir: "~/projects"
+    theme: "Ocean"
+    tab_color: "green"
+
+  - position:
+      x: 960
+      y: 563
+      width: 960
+      height: 540
+    title: "terminal"
+    working_dir: "~/projects"
+    theme: "Homebrew"
+    tab_color: "red"
